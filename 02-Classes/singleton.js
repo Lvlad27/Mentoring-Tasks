@@ -36,4 +36,14 @@ obj1.log();
 let obj2 = Singleton.getInstance('Belarus');
 obj2.log();
 
-console.log(obj1 === obj2);
+console.log(obj1 === obj2); //true
+
+/*
+let obj1 = new Singleton('Romania');
+obj1.log();
+
+let obj2 = new Singleton('Belarus');
+obj2.log();
+
+console.log(obj1 === obj2); //false
+*/
