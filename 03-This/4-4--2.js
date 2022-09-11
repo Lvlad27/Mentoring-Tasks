@@ -16,11 +16,22 @@ alert( calculator.mul() );
 */
 
 let calculator = {
+  a: +prompt('a is:'),
+  b: +prompt('b is:'),
+
   read() {
-    console.log('Please enter a value');
-  }
+    return { a: this.a, b: this.b };
+  },
+
+  sum() {
+    return this.a + this.b;
+  },
+
+  mul() {
+    return this.a * this.b;
+  },
 };
 
-calculator.read();
-console.log(calculator.sum());
-console.log(calculator.mul());
+console.log('Object is =>', calculator.read());
+console.log('Sum is equal to =>', calculator.sum());
+console.log('Product is equal to =>', calculator.mul());
