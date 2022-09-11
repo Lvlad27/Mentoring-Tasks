@@ -70,6 +70,7 @@ class Clock {
   };
 
   start = () => {
+    console.log(this.precision);
     this.render();
     this.timer = setInterval(() => this.render(), 1000);
   };
@@ -77,16 +78,15 @@ class Clock {
 
 class ExtendedClock extends Clock {
   constructor(params) {
-    super(params);
-    //
-    this.precision = precision;
+    super({ template: params.template });
+    this.precision = params.precision;
   }
 
-  start() {
+  start = () => {
     this.render();
-    this.timer = setInterval(() => this.render(), this.precision);
-  }
+    this.timer = setInterval(() => this.render(), this.precision ? this.precision : 1000);
+  };
 }
 
-let precisionClock = new ExtendedClock({ template: 'h:m:s', precision: 1000 });
+let precisionClock = new ExtendedClock({ template: 'h:m:s', precision: 2000 });
 precisionClock.start();
