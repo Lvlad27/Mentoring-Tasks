@@ -20,18 +20,14 @@ In other words, delay(f, ms) returns a "delayed by ms" variant of f.
 In the code above, f is a function of a single argument, but your solution should pass all arguments and the context this.
 */
 
-function f(x) {
-  console.log(x);
-}
-
-function delay(f, ms) {
+function delay(func, delayTime) {
   return function () {
-    setTimeout(() => f.apply(this, arguments), ms);
+    setTimeout(() => func.apply(this, arguments), delayTime);
   };
 }
 
-let f1000 = delay(f, 1000);
-let f1500 = delay(f, 1500);
+let f1000 = delay(console.log, 1000);
+let f1500 = delay(console.log, 1500);
 
 f1000('test'); // shows "test" after 1000ms
 f1500('test'); // shows "test" after 1500ms
