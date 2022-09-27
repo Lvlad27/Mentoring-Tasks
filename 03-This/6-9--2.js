@@ -22,12 +22,16 @@ In the code above, f is a function of a single argument, but your solution shoul
 
 function delay(func, delayTime) {
   return function () {
+    clearTimeout();
     setTimeout(() => func.apply(this, arguments), delayTime);
   };
 }
 
-let f1000 = delay(console.log, 1000);
-let f1500 = delay(console.log, 1500);
+let f = delay(console.log, 3000);
 
-f1000('test'); // shows "test" after 1000ms
-f1500('test'); // shows "test" after 1500ms
+// f1000('test'); // shows "test" after 1000ms
+// f1500('test'); // shows "test" after 1500ms
+
+f('a');
+setTimeout(() => f('b'), 200);
+setTimeout(() => f('c'), 500);

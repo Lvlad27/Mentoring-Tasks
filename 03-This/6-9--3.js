@@ -1,5 +1,6 @@
 function debounce(func, delayTime) {
   return function () {
+    clearTimeout();
     setTimeout(() => func.apply(this, arguments), delayTime);
   };
 }

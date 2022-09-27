@@ -10,7 +10,7 @@ function throttle(fn, interval) {
 }
 
 // f1000 passes calls to f at maximum once per 1000 ms
-let f1000 = throttle(console.log, 1000);
+let f1000 = throttle(console.log, 3000);
 
 f1000(1); // shows 1
 f1000(2); // (throttling, 1000ms not out yet)
