@@ -1,0 +1,16 @@
+TASK 1 - Do you see any imperfections in its infological and datalogical levels? If yes, name them.
+
+  - Office has no relational data to the rest of the entities.
+  - Site Page has no relational data to the rest of the entities.
+  - Account doesn't have a Transaction History attribute so it's not possible to correlate account with Transaction(operational) and/or Transaction(archive).
+  - Account doesn't have a Status attribute so it's not possible to correlate Account entity with Status entity.
+  - Account Owner entity doesn't have an Account Id attribute in order to correlate with Account Owner with Account.
+
+TASK 2 - What questions do you want to ask the Customer to improve the models? Write down these 
+questions.
+
+  1. Should the account have a transaction history?
+  2. Should the owner have an account Id association?
+  3. Should the account have a status attribute?
+  4. Should the Office be associated with Site Page entity? (e.g. show office location on site etc.)
+  5. Should the Office entity be associated with Account entity? (e.g. at what office was the account opened?)
