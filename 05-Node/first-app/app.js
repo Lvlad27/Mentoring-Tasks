@@ -1,30 +1,10 @@
-const path = require('path');
+const http = require('http');
 
-const pathObj = path.parse(__filename);
-// console.log(pathObj);
-
-const os = require('os');
-let totalMemory = os.totalmem();
-let freeMemory = os.freemem();
-
-// console.log('🚀 ~ file: app.js ~ line 8 ~ totalMemory', totalMemory);
-// console.log('🚀 ~ file: app.js ~ line 10 ~ freeMemory', freeMemory);
-
-const fs = require('fs');
-const files = fs.readdirSync('./');
-// console.log('🚀 ~ file: app.js ~ line 15 ~ files', files);
-
-// fs.readdir('$', function (err, files) {
-//   if (err) console.log('Error', err);
-//   else console.log('Result', files);
-// });
-
-const Logger = require('./logger');
-const logger = new Logger();
-
-// Register a listener
-logger.on('messageLogged', (e) => {
-  console.log('Listener called', e);
+const server = http.createServer((req, res) => {
+  req.url === '/' && res.write('Hello World!') && res.end();
+  req.url === '/api/courses' && res.write(JSON.stringify([1, 2, 3])) && res.end();
 });
 
-logger.log('message');
+server.listen(3000);
+
+console.log('Listening on port 3000...');
