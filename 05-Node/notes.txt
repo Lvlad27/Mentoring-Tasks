@@ -1,0 +1,33 @@
+4) BUILDING RESTFUL API'S USING EXPRESS
+  41. INTRODUCTION
+  42. RESTFUL SERVICES
+  43. INTRODUCING EXPRESS
+  44. BUILDING YOUR FIRST WEB SERVER
+  45. NODEMON
+  46. ENVIRONMENT VARIABLES
+  47. ROUTE PARAMETERS
+  48. HANDLING HTTP GET REQUESTS
+    - res.send()
+    - req.params
+    - res.status
+  49. HANDLING HTTP POST REQUESTS
+    - read body of req => use properties to create new obj => add obj to array
+    - req.body (we need to enable parsing of JSON body of request, it's not enabled by default in express)
+  50. CALLING ENDPOINTS USING POSTMAN (I used insomnia)
+    - sending json body with post request
+  51. INPUT VALIDATION
+    - always validate input from client
+    - validation logic
+    - RESTful convention is to return a response through the http status code 400 (bad request)
+    - in real world situation use of npm package like "joi"
+      - define Schema (shape of object)
+      - return error in case of wrong input
+  52. HANDLING HTTP PUT REQUESTS
+    - Basic operations
+      - Look up data => If not existing, return 404
+      - Validate => If invalid, return 400
+      - Update data
+      - return updated data (res.send)
+    - Refactor to avoid duplication
+
+
