@@ -40,3 +40,35 @@
       - each movie has a genre, like action, horror, etc. 
       - should have an endpoint for getting the list of all genres
       - should also be able to create a new genre, as well as update,or delete an existing one.
+  
+  5) EXPRESS - ADVANCED TOPICS
+    57. Middleware
+      - is a function that takes a request object, and either returns a response to the client, or passes the control to another middleware function
+        - route handler function
+        - express.json method is a built in middleware function => reads request and if there is a json object in the body object of the request, it will parse the body object into a json object and then it will set request.body property.
+        - this happens at runtime
+        - request processing pipeline
+        - request => json => route() => response
+        - an express application is essentially just a bunch of middleware functions
+    58. CREATING CUSTOM MIDDLEWARE
+    59. BUILT-IN MIDDLEWARE
+      - urlencoded()
+      - static()
+    60. THIRD PARTY MIDDLEWARE
+      - helmet()
+      - morgan()
+    61. ENVIRONMENTS
+      - process = global object in Node that gives us access to current process
+      - NODE_ENV = standard environment variable => returns the environment for this current application
+        - console.log(process.env.NODE_ENV)
+        - app.get('env') => this is returning 'development' by default
+    62. CONFIGURATION
+      - storing config settings for the application and overriding those settings in each environment (e.g. development environment uses different database for mail server)
+    63. DEBUGGING
+      - 
+
+
+
+
+----------------------------------------------------------
+Q1) Why use config package? Why not just define folder and json files?

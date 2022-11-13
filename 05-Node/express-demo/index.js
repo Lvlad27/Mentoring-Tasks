@@ -1,9 +1,30 @@
+const config = require('config');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const auth = require('./auth');
+const logger = require('./logger');
 const Joi = require('joi');
 const express = require('express');
 const app = express();
 
 // this is adding a piece of middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(helmet());
+
+// COnfiguration
+console.log(`Application name: ${config.get('name')}`);
+console.log(`Mail host: ${config.get('mail.host')}`);
+console.log(`Mail password: ${config.get('mail.password')}`);
+
+if (app.get('env') === 'development') {
+  app.use(morgan('tiny'));
+  console.log('Morgan enabled...');
+}
+// custom middleware
+app.use(logger);
+app.use(auth);
 
 const courses = [
   {
