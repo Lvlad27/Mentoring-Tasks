@@ -29,5 +29,14 @@
       - Update data
       - return updated data (res.send)
     - Refactor to avoid duplication
-
-
+    - check request with insomnia
+  53. HANDLING HTTP DELETE REQUESTS
+    - Basic operations
+      - Look up data => If not existing, return 404
+      - Delete data
+      - return same data
+  54. TASK
+      - create service for managing the list of genres
+      - each movie has a genre, like action, horror, etc. 
+      - should have an endpoint for getting the list of all genres
+      - should also be able to create a new genre, as well as update,or delete an existing one.
