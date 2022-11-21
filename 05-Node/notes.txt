@@ -50,14 +50,28 @@
         - request processing pipeline
         - request => json => route() => response
         - an express application is essentially just a bunch of middleware functions
+        - The next() function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware. If the current middleware function does not end the request-response cycle, it must call next() to pass control to the next middleware function. Otherwise, the request will be left hanging.
     58. CREATING CUSTOM MIDDLEWARE
+      - can create custom middleware for different concerns, such as logging, authentication, etc.
+      - // Custom middleware (applied on all routes) 
+            app.use(function(req, res, next)) { 
+                // … 
+                next();
+            } 
+      - // Custom middleware (applied on routes starting with /api/admin) 
+            app.use(‘/api/admin’, function(req, res, next)) { 
+                // … 
+                next();
+            }
     59. BUILT-IN MIDDLEWARE
-      - urlencoded()
-      - static()
+      - json() => to parse the body of requests with a JSON payload
+      - urlencoded() => to parse the body of requests with URL-encoded payload
+      - static() => to serve static files
     60. THIRD PARTY MIDDLEWARE
       - helmet()
       - morgan()
     61. ENVIRONMENTS
+      - We can detect the environment in which our Node application is running (development, production, etc) using process.env.NODE_ENV and app.get(‘env’).
       - process = global object in Node that gives us access to current process
       - NODE_ENV = standard environment variable => returns the environment for this current application
         - console.log(process.env.NODE_ENV)
@@ -65,10 +79,42 @@
     62. CONFIGURATION
       - storing config settings for the application and overriding those settings in each environment (e.g. development environment uses different database for mail server)
     63. DEBUGGING
-      - 
+      - debug packages
+      - We can use the debug package to add debugging information to an application. Prefer this approach to console.log() statements.
+      - can be used for multiple namespaces
+        - export DEBUG=app:startup, app:db
+        - export DEBUG=app:*
+        - shortcut: DEBUG=app:db nodemon index.js
+    64. TEMPLATING ENGINES
+      - To return HTML markup to the client, use a templating engine. There are various templating engines available out there. Pug, EJS and Mustache are the most popular ones. 
+      - using Pug
+    65. DATABASE INTEGRATION
+
+  7) CRUD OPERATIONS USING MongoDB
+    84. Installing MongoDb and mongosh on Windows
+    85. Connect to MongoDB using Mongoose
+      - Start MongoDB database:
+        "C:\Program Files\MongoDB\Server\6.0\bin\mongod.exe" --dbpath="c:\data\db"
+    86. Schemas
+      - Schema types: String, Number, Date, Buffer, Boolean, ObjectId, Array
+    87. Models
+      - Schema => Model => Class => Object
+    88. Saving a document
+    89. Querying documents
+      - .find({key: value})
+      - .limit(number)
+      - .sort({key: value}) => value can be 1 for ascending order and  -1 for descending order
+      - .select({key: number})
+    90. Comparison query operators
+      - eq, ne, gt, gte, lt, lte, in, nin
+      - .find({ price: 10 }) => .find( { price: { $gt: 10, $lte: 20 } })
+      - .find({ price: { $in: [10, 15, 20] } })
+    91. Logical query operators
+      - or, and
+      - .find().or([{ author: 'Mosh' }, { isPublished: true }])
+
 
 
 
 
 ----------------------------------------------------------
-Q1) Why use config package? Why not just define folder and json files?
