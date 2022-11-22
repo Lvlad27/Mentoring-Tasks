@@ -94,7 +94,7 @@
     84. Installing MongoDb and mongosh on Windows
     85. Connect to MongoDB using Mongoose
       - Start MongoDB database:
-        "C:\Program Files\MongoDB\Server\6.0\bin\mongod.exe" --dbpath="c:\data\db"
+        - run in command prompt: "C:\Program Files\MongoDB\Server\6.0\bin\mongod.exe" --dbpath="c:\data\db"
     86. Schemas
       - Schema types: String, Number, Date, Buffer, Boolean, ObjectId, Array
     87. Models
@@ -112,6 +112,13 @@
     91. Logical query operators
       - or, and
       - .find().or([{ author: 'Mosh' }, { isPublished: true }])
+    92. Regular Expressions
+      - .find({ author: /^Mosh/ })
+    93. Counting
+      - .count() => returns the count of documents that match a given criteria
+    94. Pagination
+     - .skip((pageNumber - 1) * pageSize)
+     - limit.(pageSize)
 
 
 
