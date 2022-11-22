@@ -117,8 +117,20 @@
     93. Counting
       - .count() => returns the count of documents that match a given criteria
     94. Pagination
-     - .skip((pageNumber - 1) * pageSize)
-     - limit.(pageSize)
+      - .skip((pageNumber - 1) * pageSize)
+      - limit.(pageSize)
+    95-97. Exercises
+    98-99. Updating documents
+      - 1st approach: Query first 
+        - findById() => modify properties => save()
+      - 2nd approach: update first:
+        - update directly
+        - optionally get updated document
+      - update operators: $currentDate, $inc, $min, $max, $mul, $rename, $set, $unset, $setOnInsert\
+    100. Deleting documents
+      - deleteOne() => deletes first found
+      - deleteMany()
+      - findByIdAndRemove() => if the document doesn't exist, it will return null
 
 
 
