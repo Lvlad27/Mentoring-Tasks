@@ -133,7 +133,7 @@
       - findByIdAndRemove() => if the document doesn't exist, it will return null
 
 8) MONGOOSE - DATA VALIDATION
-    102. Validation
+  102. Validation
       - use try catch block to see error message
       - .validate() (doesn't return boolean)
       - const isValid = .validate((err) => {
@@ -142,13 +142,13 @@
       - Why do we use two kinds of validation? (joy and mongoose validation)
         - we use Joy to make sure that the data the client is sending us is valid.
         - we use mongoose validation to make sure the data saved to the database is valid.
-    103. Built-In Validators
+  103. Built-In Validators
       - validate field depending on other fields
       - we can validate with Boolean type or a function to make a type required
       - minlength, maxlength
       - enum
       - min, max
-    104. Custom Validators
+  104. Custom Validators
       - for example we need to require at least one tag and a custom message
         - tags: {
             type: Array,
@@ -159,7 +159,7 @@
               message: 'A course should have at least one tag'
             }
           },
-    105. Async validators
+  105. Async validators
       -  Sometimes the validation logic may involve reading something from a database or from a remote http service. 
       - tags: {
           type: Array,
@@ -176,10 +176,34 @@
             message: 'A course should have at least one tag'
           }
         },
-    106. Validation errors
-        
+  106. Validation errors
+       - catch (ex) {
+          for (field in ex.errors) {
+            console.log(ex.errors[field].message);
+          }
+  107. SchemaType Options 
+      - strings => lowercase, uppercase, trim
+      - numbers => round values using getters and setters
+  108. Project
+     - add persistence to Genres.API
+     - add customers API
+     - restructuring project
 
+9) MONGOOSE - MODELING RELATIONSHIPS BETWEEN CONNECTED DATA
+  112. Modelling Relationships
+    - Using references
+    - using embedded documents
+    To model relationships between connected data, we can either reference a document or embed it in another document. When referencing a document, there is really no relationship between these two documents. So, it is possible to reference a non-existing document.
+      1) Referencing documents (normalization) is a good approach when you want to enforce data consistency. Because there will be a single instance of an object in the database. But this approach has a negative impact on the performance of your queries because in MongoDB we cannot JOIN documents as we do in relational databases. So, to get a complete representation of a document with its related documents, we need to send multiple queries to the database.
 
+      2) Embedding documents (denormalization) solves this issue. We can read a complete representation of a document with a single query. All the necessary data is embedded in one document and its children. But this also means we’ll have multiple copies of data in different places. While storage is not an issue these days, having multiple copies means changes made to the original  document may not propagate to all copies. If the database server dies during an update, some documents will be inconsistent. For every business, for every problem, you need to ask this question: “can we tolerate data being inconsistent for a short period of time?” If not, you’ll have to use references. But again, this means that your queries will be slower.
+  113. Referencing documents
+    - const courseSchema = new mongoose.Schema({
+        author: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: ‘Author’ 
+        } 
+      })
 
 
 --------------------------------------------------------------------

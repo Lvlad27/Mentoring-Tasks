@@ -27,7 +27,7 @@ const courseSchema = new mongoose.Schema({
           setTimeout(() => {
             const result = v && v.length > 0;
             resolve(result);
-          }, 4000);
+          }, 0);
         });
       },
       message: 'A course should have at least one tag'
@@ -44,7 +44,9 @@ const courseSchema = new mongoose.Schema({
       return this.isPublished;
     },
     min: 10,
-    max: 200
+    max: 200,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v)
   }
 });
 
@@ -55,16 +57,18 @@ async function createCourse() {
     name: 'Angular Course',
     category: 'web',
     author: 'Mosh',
-    tags: [],
+    tags: ['frontend'],
     isPublished: true,
-    price: 15
+    price: 15.8
   });
 
   try {
     const result = await course.save();
     console.log(result);
   } catch (ex) {
-    console.log(ex.errors);
+    for (field in ex.errors) {
+      console.log(ex.errors[field].message);
+    }
   }
 }
 
