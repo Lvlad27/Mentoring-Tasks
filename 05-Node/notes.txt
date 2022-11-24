@@ -219,6 +219,12 @@ context of their parent.
           {$set: { 'author.name': 'New Name'}}
         );
     116. Using an array of sub-documents
+    117. Project
+      - movie API
+      - rentals API
+    118. Transactions
+      - mention of Two Phase commit
+      - 
 
 
 --------------------------------------------------------------------
