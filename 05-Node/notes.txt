@@ -204,6 +204,21 @@
             ref: ‘Author’ 
         } 
       })
+  114. Population
+    - .populate()
+  115. Embedding documents
+    - Embedded documents don’t have a save method. They can only be saved in the 
+context of their parent.
+    - Updating an embedded document 
+        const course = await Course.findById(courseId);
+        course.author.name = ‘New Name’; 
+        course.save();
+    - Updating an embedded document 
+        const course = await Course.updateOne(
+          { _id: courseId }, 
+          {$set: { 'author.name': 'New Name'}}
+        );
+    116. Using an array of sub-documents
 
 
 --------------------------------------------------------------------
