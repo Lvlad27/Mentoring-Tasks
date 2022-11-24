@@ -41,7 +41,7 @@
       - should have an endpoint for getting the list of all genres
       - should also be able to create a new genre, as well as update,or delete an existing one.
   
-  5) EXPRESS - ADVANCED TOPICS
+5) EXPRESS - ADVANCED TOPICS
     57. Middleware
       - is a function that takes a request object, and either returns a response to the client, or passes the control to another middleware function
         - route handler function
@@ -90,7 +90,7 @@
       - using Pug
     65. DATABASE INTEGRATION
 
-  7) CRUD OPERATIONS USING MongoDB
+7) CRUD OPERATIONS USING MongoDB
     84. Installing MongoDb and mongosh on Windows
     85. Connect to MongoDB using Mongoose
       - Start MongoDB database:
@@ -132,8 +132,54 @@
       - deleteMany()
       - findByIdAndRemove() => if the document doesn't exist, it will return null
 
+8) MONGOOSE - DATA VALIDATION
+    102. Validation
+      - use try catch block to see error message
+      - .validate() (doesn't return boolean)
+      - const isValid = .validate((err) => {
+        if(err) {}
+      }) 
+      - Why do we use two kinds of validation? (joy and mongoose validation)
+        - we use Joy to make sure that the data the client is sending us is valid.
+        - we use mongoose validation to make sure the data saved to the database is valid.
+    103. Built-In Validators
+      - validate field depending on other fields
+      - we can validate with Boolean type or a function to make a type required
+      - minlength, maxlength
+      - enum
+      - min, max
+    104. Custom Validators
+      - for example we need to require at least one tag and a custom message
+        - tags: {
+            type: Array,
+            validate: {
+              validator: function (v) {
+                return v.length > 0;
+              },
+              message: 'A course should have at least one tag'
+            }
+          },
+    105. Async validators
+      -  Sometimes the validation logic may involve reading something from a database or from a remote http service. 
+      - tags: {
+          type: Array,
+          validate: {
+            isAsync: true,
+            validator: function (v) {
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  const result = v && v.length > 0;
+                  resolve(result);
+                }, 4000);
+              });
+            },
+            message: 'A course should have at least one tag'
+          }
+        },
+    106. Validation errors
+        
 
 
 
 
-----------------------------------------------------------
+--------------------------------------------------------------------
