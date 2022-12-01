@@ -28,23 +28,18 @@ router.put('/:id', async (req, res) => {
   );
 
   !genre && res.status(404).send('There is no genre with that id.');
-
   res.send(genre);
 });
 
 router.delete('/:id', async (req, res) => {
   const genre = await Genre.findByIdAndRemove(req.params.id);
-
   !genre && res.status(404).send('There is no genre with that id.');
-
   res.send(genre);
 });
 
 router.get('/:id', async (req, res) => {
   const genre = await Genre.findById(req.params.id);
-
   !genre && res.status(404).send('There is no genre with that id.');
-
   res.send(genre);
 });
 
